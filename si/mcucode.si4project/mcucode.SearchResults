@@ -1,0 +1,37 @@
+---- MGR_TASK_ENABLE Matches (6 in 2 files) ----
+FreeRTOSConfig.h (D:\designfile\gus-cloud\mcucode\src\freertos\include) line 94 : 
+#define configMAX_TASK_NAME_LEN   (16) /* ÈÎÎñÃû³ÆµÄ×î´ó³¤¶È£¬º¬½áÊø·û */
+#ifdef MGR_TASK_ENABLE
+#define configUSE_TRACE_FACILITY   1 /* ÊÇ·ñÊ¹ÓÃTRACE¹¦ÄÜ */
+#else
+#define configUSE_TRACE_FACILITY   0 /* ÊÇ·ñÊ¹ÓÃTRACE¹¦ÄÜ */
+FreeRTOSConfig.h (D:\designfile\gus-cloud\mcucode\src\freertos\include) line 102 : 
+
+#ifdef MGR_TASK_ENABLE
+#if defined(__ICCARM__) || defined(__CC_ARM) || defined(__GNUC__)
+ #include <stdint.h>
+ extern volatile uint32_t ulHighFrequencyTimerTicks;
+main.c (D:\designfile\gus-cloud\mcucode\src\user) line 16 : 
+
+#ifdef MGR_TASK_ENABLE
+/* å®šæ—¶å™¨é¢‘çŽ‡ï¼Œ50usä¸€æ¬¡ä¸­æ–­ */
+#define  timerINTERRUPT_FREQUENCY	20000
+
+main.c (D:\designfile\gus-cloud\mcucode\src\user) line 102 : 
+
+#ifdef MGR_TASK_ENABLE
+static void vMgr_Task(void *pvParameters)
+{
+	uint8_t pcWriteBuffer[500];
+main in main.c (D:\designfile\gus-cloud\mcucode\src\user) : 
+
+#ifdef MGR_TASK_ENABLE
+	vSetupSysInfoTest();
+#endif
+
+main in main.c (D:\designfile\gus-cloud\mcucode\src\user) : 
+	xTaskCreate(vDat_Task, "DatTask", configMINIMAL_STACK_SIZE, NULL, 2, &DatTask_Handler);
+#ifdef MGR_TASK_ENABLE
+	xTaskCreate(vMgr_Task, "MgrTask", configMINIMAL_STACK_SIZE, NULL, 1, NULL);
+#endif
+
